@@ -47,6 +47,11 @@ jobs:
             --task-definition ${{ env.ECS_SERVICE }} \
             --query taskDefinition > task-def.json
 
+      - name: Clean task definition
+        run: |
+          jq 'del(.enableFaultInjection)' task-def.json > clean-task-def.json
+          mv clean-task-def.json task-def.json
+
       - name: Update image in task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
