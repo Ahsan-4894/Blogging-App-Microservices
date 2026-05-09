@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: ai-service
+  ai:
+    openai:
+      api-key: ${API_KEY}
+      base-url: ${BASE_URL}
+      chat:
+        options:
+          model: ${MODEL_NAME}
+
+server:
+  port: 8083
+  servlet:
+    context-path: /api/v1
+
+grpc:
+  server:
+    port: 9092
+
+logging:
+  level:
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    org.springframework.cloud.netflix: WARN
+    org.springframework.cloud.loadbalancer: WARN
+    io.grpc: WARN
+    io.netty: WARN
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: ${OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+    logging:
+      endpoint: ${OTLP_LOGGING_ENDPOINT:http://localhost:4318/v1/logs}

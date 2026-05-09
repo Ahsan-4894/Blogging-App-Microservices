@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 210 40% 99%;
+    --foreground: 222 47% 11%;
+    --surface: 0 0% 100%;
+    --surface-muted: 210 40% 97%;
+    --surface-dark: 222 47% 6%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand (Indigo) */
+    --brand-50: 226 100% 97%;
+    --brand-100: 226 100% 94%;
+    --brand-500: 239 84% 67%;
+    --brand-600: 243 75% 59%;
+    --brand-700: 245 67% 53%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 226 100% 97%;
+    --accent-foreground: 243 75% 59%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Ink */
+    --ink-primary: 222 47% 11%;
+    --ink-secondary: 215 25% 35%;
+    --ink-muted: 215 20% 65%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 243 75% 59%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 222 30% 25%;
+    --sidebar-primary: 243 75% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 226 100% 97%;
+    --sidebar-accent-foreground: 243 75% 59%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 243 75% 59%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+    --surface: 222 40% 9%;
+    --surface-muted: 222 40% 12%;
+    --surface-dark: 222 47% 4%;
+
+    --card: 222 40% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 40% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --brand-50: 243 50% 18%;
+    --brand-100: 243 50% 25%;
+    --brand-500: 239 84% 70%;
+    --brand-600: 243 75% 65%;
+    --brand-700: 245 67% 60%;
+
+    --primary: 239 84% 70%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 222 30% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 222 30% 18%;
+    --accent-foreground: 239 84% 75%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ink-primary: 210 40% 98%;
+    --ink-secondary: 215 20% 80%;
+    --ink-muted: 215 15% 55%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 239 84% 70%;
+
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 215 20% 85%;
+    --sidebar-primary: 239 84% 70%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 239 84% 75%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 239 84% 70%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  h1, h2, h3, h4 { @apply tracking-tight; }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md bg-surface/70 dark:bg-surface/60 border-b border-border;
+  }
+  .skeleton {
+    @apply relative overflow-hidden bg-muted rounded-lg;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent;
+  }
+  .tiptap-editor .ProseMirror {
+    @apply min-h-[400px] outline-none text-lg leading-relaxed;
+  }
+  .tiptap-editor .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply text-ink-muted float-left h-0 pointer-events-none;
+  }
+  .tiptap-editor .ProseMirror h2 { @apply text-2xl font-display font-bold mt-6 mb-2; }
+  .tiptap-editor .ProseMirror blockquote { @apply border-l-4 border-brand-500 pl-4 italic text-ink-secondary; }
+  .tiptap-editor .ProseMirror ul { @apply list-disc pl-6; }
+  .tiptap-editor .ProseMirror a { @apply text-brand-600 underline; }
+}

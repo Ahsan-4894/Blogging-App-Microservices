@@ -1,0 +1,28 @@
+# Maven build output
+target/
+*.jar
+*.war
+*.class
+
+# yamls folder (separate git repo)
+yamls/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.DS_Store
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# Spring Boot
+spring-shell.log
+
+# Local dev config files with credentials
+cloudconfigservice/src/main/resources/config/

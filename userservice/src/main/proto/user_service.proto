@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.example.userserviceproto";
+option java_outer_classname = "UserServiceProto";
+
+service UserService {
+  rpc GetFollowerEmails(GetFollowerEmailsRequest) returns (GetFollowerEmailsResponse);
+  rpc GetFollowerIds(GetFollowerIdsRequest) returns (GetFollowerIdsRespone);
+}
+
+message GetFollowerEmailsRequest {
+  string user_id = 1;
+}
+message GetFollowerEmailsResponse {
+  repeated string emails = 1;
+}
+
+
+message GetFollowerIdsRequest {
+  string user_id = 1;
+}
+message GetFollowerIdsRespone{
+  repeated string ids = 1;
+}

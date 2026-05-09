@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option  java_multiple_files=true;
+option  java_package="com.example.aiserviceproto";
+option  java_outer_classname="AiServiceProto";
+
+
+service AiService{
+  rpc GenerateTags(GenerateTagsRequest) returns (GenerateTagsResponse);
+}
+
+message GenerateTagsRequest{
+    string content = 1;
+}
+
+message GenerateTagsResponse{
+  string tags = 1;
+}

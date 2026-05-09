@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quill — Where ideas find their voice</title>
+    <meta name="description" content="A premium blogging platform for thoughtful writers and curious readers." />
+    <meta name="author" content="Quill" />
+    <meta property="og:title" content="Quill — Where ideas find their voice" />
+    <meta property="og:description" content="A premium blogging platform for thoughtful writers and curious readers." />
+    <meta property="og:type" content="website" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

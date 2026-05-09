@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cloudconfig-service
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GITHUB_URI}
+          default-label: main
+          clone-on-start: true
+          search-paths: "."
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_TOKEN}
+
+server:
+  port: 8888
