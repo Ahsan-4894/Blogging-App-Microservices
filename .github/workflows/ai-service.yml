@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/ai-service
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: ai-service
   CONTAINER_NAME: ai-service
 

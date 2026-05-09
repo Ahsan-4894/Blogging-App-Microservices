@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/notification-service
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: notification-service
   CONTAINER_NAME: notification-service
 

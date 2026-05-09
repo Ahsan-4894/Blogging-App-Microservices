@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/config-server
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: config-server
   CONTAINER_NAME: config-server
 

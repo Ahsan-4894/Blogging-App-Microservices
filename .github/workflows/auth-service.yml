@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/auth-service
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: auth-service
   CONTAINER_NAME: auth-service
 

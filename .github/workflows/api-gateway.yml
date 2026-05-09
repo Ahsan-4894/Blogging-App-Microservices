@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/api-gateway
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: api-gateway
   CONTAINER_NAME: api-gateway
 

@@ -9,7 +9,7 @@ on:
 
 env:
   ECR_REPO: blogging/eureka
-  ECS_CLUSTER: blogging-app-cluster
+  ECS_CLUSTER: blogging_app_cluster
   ECS_SERVICE: eureka
   CONTAINER_NAME: eureka
 
