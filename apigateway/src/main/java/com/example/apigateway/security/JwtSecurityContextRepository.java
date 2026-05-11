@@ -2,6 +2,7 @@ package com.example.apigateway.security;
 
 import com.example.apigateway.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtSecurityContextRepository implements ServerSecurityContextRepository {
@@ -28,7 +30,10 @@ public class JwtSecurityContextRepository implements ServerSecurityContextReposi
     @Override
     public Mono<SecurityContext> load(ServerWebExchange exchange) {
         HttpCookie cookie = exchange.getRequest().getCookies().getFirst("access_token");
-        if (cookie == null) return Mono.empty();
+        if (cookie == null) {
+            log.warn("JWT auth: no access_token cookie found");
+            return Mono.empty();
+        }
 
         String token = cookie.getValue();
         try {
@@ -41,9 +46,11 @@ public class JwtSecurityContextRepository implements ServerSecurityContextReposi
                 );
                 auth.setDetails(userId);
                 return Mono.just(new SecurityContextImpl(auth));
+            } else {
+                log.warn("JWT auth: token expired or username null for token");
             }
-        } catch (Exception ignored) {
-            // malformed or expired token — fall through to empty
+        } catch (Exception e) {
+            log.error("JWT auth: validation failed — {}", e.getMessage());
         }
         return Mono.empty();
     }
