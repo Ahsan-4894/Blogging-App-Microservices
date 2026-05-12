@@ -2,6 +2,7 @@ package com.example.apigateway.config;
 
 import com.example.apigateway.security.JwtSecurityContextRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -20,10 +21,13 @@ public class SecurityConfig {
 
     private final JwtSecurityContextRepository jwtSecurityContextRepository;
 
+    @Value("${ALLOWED_ORIGIN:http://localhost:5173}")
+    private String allowedOrigin;
+
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedOrigins(List.of(allowedOrigin));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -42,7 +46,7 @@ public class SecurityConfig {
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(List.of("http://localhost:5173"));
+                    config.setAllowedOrigins(List.of(allowedOrigin));
                     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
                     config.setAllowedHeaders(List.of("*"));
                     config.setAllowCredentials(true);
